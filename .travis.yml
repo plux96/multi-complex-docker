@@ -9,7 +9,7 @@ script:
   - docker run -e CI=true plux96/react-test npm run test
 
 after_success:
-  - docker build -t plux96/multi-react ./client
+  - docker build -t plux96/multi-client ./client
   - docker build -t plux96/multi-nginx ./nginx
   - docker build -t plux96/multi-server ./server
   - docker build -t plux96/multi-worker ./worker
@@ -17,7 +17,7 @@ after_success:
   # Login Docker Hub with credentials
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Took those images and push to Docker Hub
-  - docker push plux96/multi-react
+  - docker push plux96/multi-client
   - docker push plux96/multi-nginx
   - docker push plux96/multi-server
   - docker push plux96/multi-worker
